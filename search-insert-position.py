@@ -14,10 +14,10 @@ def searchInsert(nums, target):
         else:
             return mid
 
-    return
+    return left
 
 
 nums = [1,3,5,6]
-target = 4
+target = 7
 
 print(searchInsert(nums, target))
