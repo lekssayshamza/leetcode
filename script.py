@@ -1,19 +1,17 @@
-# link: https://leetcode.com/problems/range-sum-query-immutable/
+def is_valid(s):
+    stack = []
+    pairs = {')': '(', ']': '[', '}': '{'}
 
-def build_prefix(nums):
-    prefix = [0]
-
-    for num in nums:
-        prefix.append(prefix[-1] + num)
-
-    return prefix
-
-def range_sum(prefix, left, right):
-    return prefix[right + 1] - prefix[left]
+    for char in s:
+        if char in pairs.values():
+            stack.append(char)
+        if char in pairs:
+            if stack or stack[-1] == char:
+                
 
 
-prefix = [0, 3, 4, 9, 11, 17]
-
-print(range_sum(prefix, 1, 4))
-print(range_sum(prefix, 2, 3))
-print(range_sum(prefix, 0, 4))
+print(is_valid("()")   )  # True
+print(is_valid("([])")  ) # True
+print(is_valid("([)]") )  # False
+print(is_valid("(((")  )  # False
+print(is_valid("}{")   )  # False
