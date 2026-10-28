@@ -1,44 +1,38 @@
-class MyQueue:
-    def __init__(self):
-        self.stack_in = []
-        self.stack_out = []
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-    def push(self, x: int) -> None:
-        self.stack_in.append(x)
+def reverseList(head):
+    prev = None
+    current = head
 
-    def pop(self) -> int:
-        if not self.stack_out:
-            for i in range(len(self.stack_in)):
-                self.stack_out.append(self.stack_in.pop())
+    while(current):
+        next_node = current.next
+        current.next = prev
+        prev = current
+        current = next_node
 
-        return self.stack_out.pop()
-
-    def peek(self) -> int:
-        if not self.stack_out:
-            for i in range(len(self.stack_in)):
-                self.stack_out.append(self.stack_in.pop())
-
-        return self.stack_out[-1]
-
-    def empty(self) -> bool:
-        return not (self.stack_in or self.stack_out)
-        
+    return prev
 
 
-q = MyQueue()
 
-print(q.empty())
+head = ListNode(10)
+head.next = ListNode(20)
+head.next.next = ListNode(30)
 
-q.push(10)
-q.push(20)
-q.push(30)
+current = head
 
-print(q.empty())
+while(current):
+    print(current.val)
+    current = current.next
 
-print(q.peek())  # 10
-print(q.peek())  # 10
+print()
 
-print(q.empty())
+head = reverseList(head)
 
-print(q.pop())   # 10
-print(q.peek())  # 20
+current = head
+
+while(current):
+    print(current.val)
+    current = current.next
