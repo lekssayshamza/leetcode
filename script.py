@@ -1,28 +1,30 @@
-def binary_search(nums, target):
+def first_day_reaching(production, target):
     left = 0
-    right = len(nums) - 1
-    mid = len(nums) // 2
+    right = len(production) - 1
 
-    while (left <= right):
+    while left < right:
         mid = (left + right) // 2
-        if target > nums[mid]:
-            left = mid + 1
-            # mid += ((right - left + 1) // 2 + 1)
-            # mid = (right - left) // 2 + left
-        elif target < nums[mid]:
-            right = mid - 1
-            # mid -= ((right - left + 1) // 2 + 1)
-            # mid = (right - left) // 2 + left
+        if target <= production[mid]:
+            right = mid
         else:
-            return mid
+            left = mid + 1
+
+    if production and target <= production[right]:
+        return right
 
     return -1
 
 
-nums = [4, 9, 15, 22, 31, 46, 58]
 
-print(binary_search(nums, 31))  # 4
-print(binary_search(nums, 4))   # 0
-print(binary_search(nums, 58))  # 6
-print(binary_search(nums, 20))  # -1
-print(binary_search([], 10))    # -1
+production = [5, 12, 19, 19, 27, 35, 42, 42, 50]
+
+print(first_day_reaching(production, 19))  # 2
+print(first_day_reaching(production, 20))  # 4
+print(first_day_reaching(production, 42))  # 6
+print(first_day_reaching(production, 60))  # -1
+print(first_day_reaching([], 10))          # -1
+print(first_day_reaching([5, 12, 19, 19, 19, 27, 35], 19))  # 2
+print(first_day_reaching([15], 10))                            # 0
+print(first_day_reaching([15], 20))                            # -1
+print(first_day_reaching([15], 15))                            # 0
+print(first_day_reaching([5, 5, 5, 5], 5))                      # 0
